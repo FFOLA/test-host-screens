@@ -1,11 +1,12 @@
 import { Text, type TextProps, StyleSheet } from 'react-native';
 
 import { useThemeColor } from '@/hooks/useThemeColor';
+import { fonts } from '@/assets/fonts/fonts';
 
 export type ThemedTextProps = TextProps & {
   lightColor?: string;
   darkColor?: string;
-  type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
+  type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link' | 'heading' | 'descriptionSmall' | 'descriptionBig' | 'defaultBold';
 };
 
 export function ThemedText({
@@ -24,7 +25,10 @@ export function ThemedText({
         type === 'default' ? styles.default : undefined,
         type === 'title' ? styles.title : undefined,
         type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
-        type === 'subtitle' ? styles.subtitle : undefined,
+        // type === 'subtitle' ? styles.subtitle : undefined,
+        type === 'descriptionSmall' ? styles.descriptionSmall : undefined,
+        type === 'descriptionBig' ? styles.descriptionBig : undefined,
+        type === 'heading' ? styles.heading : undefined,
         type === 'link' ? styles.link : undefined,
         style,
       ]}
@@ -36,24 +40,28 @@ export function ThemedText({
 const styles = StyleSheet.create({
   default: {
     fontSize: 16,
-    lineHeight: 24,
   },
   defaultSemiBold: {
     fontSize: 16,
-    lineHeight: 24,
-    fontWeight: '600',
+    fontFamily: fonts.bold['600'],
   },
   title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    lineHeight: 32,
+    fontSize: 14,
+    fontFamily: fonts.bold['500'],
   },
-  subtitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  descriptionSmall: {
+    fontSize: 12,
+    fontFamily: fonts.regular['300'],
+  },
+  descriptionBig: {
+    fontSize: 14,
+    fontFamily: fonts.bold['500'],
+  },
+  heading: {
+    fontSize: 24,
+    fontFamily: fonts.bold['500'],
   },
   link: {
-    lineHeight: 30,
     fontSize: 16,
     color: '#0a7ea4',
   },
